@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>BTC-testnet Faucet</h1>
+<h2>Отправить BTC-testnet</h2>
+<form action="" method="post">
+    {% csrf_token %}
+  <label>Введите свой BTC-testnet адрес:</label>
+  <input type="text" name="address">
+  <button>Отправить!</button>
+  <p>
+  {% if error %}
+    <label>Ошибка транзакции - {{error}}</label>
+  {% elif result %}
+        <label>{{ result }}</label>
+  {% endif %}
+  </p>
+
+    {% for tx in txs %}
+      <p>
+      <label>{{ forloop.counter }}. <a href="{% url 'tx' tx.id %}">{{tx.hash_str}}</a> - {{tx.date}}</label>
+     </p>
+    {% endfor %}
+
+</form>
+</body>
+</html>
