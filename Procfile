@@ -1,1 +1,1 @@
-web: gunicorn btctest.wsgi --log-file
+web: gunicorn btctest.wsgi
